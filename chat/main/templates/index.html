@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chat!</title>
+</head>
+<body>
+<div id="chat_text">
+</div>
+<input id="send_text" type="text">
+<button onclick="send_text()">Send!</button>
+
+<script>
+    socket = new WebSocket("ws://" + window.location.host);
+
+    socket.onmessage = function (e) {
+        var chat_el = document.getElementById('chat_text');
+        var h = chat_el.innerHTML;
+        chat_el.innerHTML = h + "<p>" + e.data + "</p>";
+    };
+
+
+    function send_text() {
+        var text_el = document.getElementById('send_text');
+        socket.send(text_el.value);
+        text_el.value = '';
+    }
+</script>
+</body>
+</html>

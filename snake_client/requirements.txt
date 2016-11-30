@@ -1,0 +1,4 @@
+noise==1.2.2
+pygame==1.9.2b8
+six==1.10.0
+websocket-client==0.37.0
